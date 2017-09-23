@@ -6,16 +6,20 @@
     <form action="">
         <div>
             <label for="video">Select a video</label>
-            <input type="file"  accept="video/*" />
+            <input type="file" accept="video/*" />
             <button type="submit">Get info</button>
         </div>
     </form>
+    <h2>Results</h2>
+    <pre id="results"></pre>
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
 
         ipcRenderer.on('video:metadata', (err, metadata) => {
-            console.log(metadata);
+            document
+                .querySelector("#results")
+                .innerHTML = metadata.format.duration;
         });
 
         document
@@ -24,7 +28,6 @@
             (event) => {
                 event.preventDefault();
                 const { path } = document.querySelector('input').files[0];
-
                 ipcRenderer.send('video:submit', path);
             });
     </script>
