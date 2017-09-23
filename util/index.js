@@ -7,4 +7,10 @@ function newWindow (file, options = {}) {
     return window;
 }
 
+function setHotKey (key) {
+    const control = (process.platform === 'darwin') ? 'Command' : 'Ctrl';
+    return `${control}+${key}`;
+}
+
 module.exports.newWindow = newWindow;
+module.exports.setHotKey = setHotKey;

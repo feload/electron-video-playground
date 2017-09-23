@@ -1,1 +1,19 @@
 <h2>New todo</h2>
+<form>
+    <div>
+        <label for="new_todo">Enter your todo.</label>
+        <input type="text" focus>
+    </div>
+    <button type="submit">Add</button>
+</form>
+<script>
+    const electron = require('electron');
+    const { ipcRenderer } = electron;
+    document
+        .querySelector('form')
+        .addEventListener('submit', (event) => {
+            event.preventDefault();
+            const value = document.querySelector('input').value;
+            ipcRenderer.send('new-todo:input', value);
+        });
+</script>
