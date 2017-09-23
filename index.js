@@ -30,6 +30,13 @@ let menuTemplate = [
                 }
             },
             {
+                label: 'Clear todos',
+                accelerator: setHotKey('C'),
+                click () {
+                    mainWindow.webContents.send('todos:clear');
+                }
+            },
+            {
                 label: 'Quit',
                 accelerator: setHotKey('Q'),
                 click () {

@@ -11,6 +11,10 @@
 
         const todos = document.querySelector('#todos');
 
+        ipcRenderer.on('todos:clear', (err) => {
+            todos.innerHTML = "";
+        });
+
         ipcRenderer.on('new-todo:success', (err, todo) => {
             const new_todo = document.createElement('li');
             new_todo.innerHTML = todo;
